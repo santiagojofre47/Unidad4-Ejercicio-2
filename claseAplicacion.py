@@ -8,11 +8,14 @@ class Aplicacion():
 
     def calcular(self):
         try:
-            val = float(self.__valor.get())
-            base = float(self.precioEntry.get())
-            self.precioIVA.set(base + (base * (val/100)))
-            self.IVA.set(base * (val/100))
-
+            IVA = float(self.__valor.get())
+            precio_base = float(self.precioEntry.get())
+            if precio_base > 0:
+                self.precioIVA.set(precio_base + (precio_base * (IVA/100)))
+                self.IVA.set(precio_base * (IVA/100))
+            else:
+                messagebox.showerror(title = 'Error de valor', message = 'Debe ingresar un pecio superio a 0 pesos')    
+            
         except ValueError:
             messagebox.showerror(title='Error de tipo',message='Debe ingresar un valor numérico')
             self.precioEntry.set('')
